@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+
+# copy config TEMP
+[[ ! -e /app/ac2mqtt/config.yml ]] && \
+	cp /app/ac2mqtt/sample_config.ym_ /app/ac2mqtt/config.yml
+
+# copy config
+#[[ ! -e /config/config.yml ]] && \
+#	cp /config/sample_config.ym_ /config/config.yml
+
+# permissions
+chown abc:abc -R \
+	/config \
+	/app
