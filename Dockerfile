@@ -2,8 +2,9 @@ FROM lsiobase/python:3.11
 
 # set version label
 ARG BUILD_DATE
-ARG AC2MQTT_RELEASE
-LABEL build_version="Build-date:- ${BUILD_DATE}"
+ARG VERSION
+ARG AC2MQTT_VERSION
+LABEL build_version="Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="wjbeckett"
 
 # set python to use utf-8 rather than ascii

@@ -1,10 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-# run the app - TEMP
 exec \
-	s6-setuidgid abc python /app/ac2mqtt/monitor.py
-
-
-#exec \
-#	s6-setuidgid abc python /app/ac2mqtt/monitor.py \
-#	--datadir /config
+	s6-setuidgid abc python /app/ac2mqtt/monitor.py \
+	--config /config
