@@ -4,7 +4,22 @@
 [[ ! -e /config/config.yml ]] && \
 	cp /app/ac2mqtt/sample_config.ym_ /config/config.yml
 
-#cp /app/ac2mqtt/sample_config.ym_ /config/config.yml
+# update app
+currentVersion=$(cat /app/ac2mqtt/version.txt)
+LATEST_RELEASE=$(curl -sX GET "https://api.github.com/repos/liaan/broadlink_ac_mqtt/releases/latest"  | jq -r '. | .tag_name')
+
+
+
+if [ $LATEST_RELEASE != $currentVersion ]; then
+   curl -o /tmp/ac2mqtt.tar.gz -L "https://github.com/liaan/broadlink_ac_mqtt/archive/${LATEST_RELEASE}.tar.gz"
+   tar xf /tmp/ac2mqtt.tar.gz -C /app/ac2mqtt --strip-components=1
+   # hard code version 
+   echo "**** Hard Coding versioning ****"
+   echo ${LATEST_RELEASE} > /app/ac2mqtt/version.txt
+else
+   echo "**** Already at latest version ****"
+fi
+
 
 # permissions
 chown abc:abc -R \
