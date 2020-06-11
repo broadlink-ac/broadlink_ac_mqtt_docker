@@ -26,6 +26,7 @@ RUN \
 	pycrypto && \
  echo "**** Install app ****" && \
  mkdir -p /app/ac2mqtt && \
+ mkdir -p /app/ac2mqtt/log && \
  mkdir -p /config && \
  if [ -z ${AC2MQTT_RELEASE+x} ]; then \
 	AC2MQTT_RELEASE=$(curl -sX GET "https://api.github.com/repos/liaan/broadlink_ac_mqtt/releases/latest" \
@@ -54,6 +55,3 @@ COPY root/ /
 
 # ports and volumes
 VOLUME /config
-
-# run the app
-CMD [ "python", "/app/ac2mqtt/monitor.py -b -c /config" ]
