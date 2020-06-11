@@ -1,5 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-exec \
-	s6-setuidgid abc python /app/ac2mqtt/monitor.py \
-	-c /config/config.yml

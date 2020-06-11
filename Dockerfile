@@ -54,3 +54,6 @@ COPY root/ /
 
 # ports and volumes
 VOLUME /config
+
+# run the app
+CMD [ "python", "/app/ac2mqtt/monitor.py -b -c /config" ]
