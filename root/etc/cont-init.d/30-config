@@ -1,10 +1,10 @@
 #!/usr/bin/with-contenv bash
 
 # copy config
-#[[ ! -e /config/config.yml ]] && \
-#	cp /app/ac2mqtt/sample_config.ym_ /config/config.yml
+[[ ! -e /config/config.yml ]] && \
+	cp /app/ac2mqtt/sample_config.ym_ /config/config.yml
 
-cp /app/ac2mqtt/sample_config.ym_ /config/config.yml
+#cp /app/ac2mqtt/sample_config.ym_ /config/config.yml
 
 # permissions
 chown abc:abc -R \
