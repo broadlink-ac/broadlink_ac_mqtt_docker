@@ -26,6 +26,7 @@ RUN \
 	pycrypto && \
  echo "**** install app ****" && \
  mkdir -p /app/ac2mqtt && \
+ mkdir -p /config && \
  if [ -z ${AC2MQTT_RELEASE+x} ]; then \
 	AC2MQTT_RELEASE=$(curl -sX GET "https://api.github.com/repos/liaan/broadlink_ac_mqtt/releases/latest" \
 	| jq -r '. | .tag_name'); \
