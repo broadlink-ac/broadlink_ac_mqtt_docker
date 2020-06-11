@@ -2,4 +2,4 @@
 
 exec \
 	s6-setuidgid abc python /app/ac2mqtt/monitor.py -b \
-	-c /config
+	-c /config/config.yml
