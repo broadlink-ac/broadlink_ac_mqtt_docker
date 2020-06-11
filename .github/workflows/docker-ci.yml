@@ -2,8 +2,7 @@ name: Docker Build and Publish
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  DISCORD_WEBHOOK_ID: ${{ secrets.DISCORD_WEBHOOK_ID }}
-  DISCORD_WEBHOOK_TOKEN: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+  DISCORD_WEBHOOK_URL: ${{secrets.DISCORD_WEBHOOK_URL}}
   GH_TOKEN: ${{ secrets.GH_TOKEN}}
   DOCKERHUB_IMAGE: broadlinkac/broadlink_ac_mqtt
   DOCKERHUB_LINK: https://hub.docker.com/r/broadlinkac/broadlink_ac_mqtt/tags/
@@ -14,13 +13,6 @@ on:
     branches: [ master ]
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate build number
-        uses: einaregilsson/build-number@v2 
-        with:
-          token: ${{secrets.GH_TOKEN}}
   build:
     runs-on: ubuntu-latest
     steps:
@@ -40,9 +32,10 @@ jobs:
     steps:
       - uses: technote-space/workflow-conclusion-action@v1
       - name: Send status to Discord
-        uses: appleboy/discord-action@master
+        uses: 8398a7/action-slack@v3
         with:
-          webhook_id: $DISCORD_WEBHOOK_ID
-          webhook_token: $DISCORD_WEBHOOK_TOKEN
-          color: "#E658E7"
-          message: "**Build:**  '$BUILD_NUMBER'\\n**Status:**  '${{ env.WORKFLOW_CONCLUSION }}'\\n**Change:** '$GITHUB_SHA'\\n**DockerHub:** '$DOCKERHUB_LINK'\\n"
+          status: ${{ env.WORKFLOW_CONCLUSION }}
+          fields: repo,message,commit,action,ref,workflow
+        env:
+          GITHUB_TOKEN: $GH_TOKEN
+          SLACK_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
