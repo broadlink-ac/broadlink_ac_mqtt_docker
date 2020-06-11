@@ -1,9 +1,5 @@
 name: Docker Build and Publish
 env:
-  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  DISCORD_WEBHOOK_URL: ${{secrets.DISCORD_WEBHOOK_URL}}
-  GH_TOKEN: ${{ secrets.GH_TOKEN}}
   DOCKERHUB_IMAGE: broadlinkac/broadlink_ac_mqtt
   DOCKERHUB_LINK: https://hub.docker.com/r/broadlinkac/broadlink_ac_mqtt/tags/
 on:
@@ -19,9 +15,9 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v1.1.0
       with:
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        repository: $DOCKERHUB_IMAGE
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: broadlinkac/broadlink_ac_mqtt
         tag_with_ref: true
         tag_with_sha: true
   notify:
@@ -37,5 +33,5 @@ jobs:
           status: ${{ env.WORKFLOW_CONCLUSION }}
           fields: repo,message,commit,action,ref,workflow
         env:
-          GITHUB_TOKEN: $GH_TOKEN
-          SLACK_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN}}
+          SLACK_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
