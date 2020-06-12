@@ -1,7 +1,4 @@
 name: Docker Build and Publish
-env:
-  DOCKERHUB_IMAGE: broadlinkac/broadlink_ac_mqtt
-  DOCKERHUB_LINK: https://hub.docker.com/r/broadlinkac/broadlink_ac_mqtt/tags/
 on:
   push:
     branches: [ master ]
