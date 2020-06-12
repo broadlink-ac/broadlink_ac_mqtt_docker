@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:3.10
+FROM lsiobase/python:3.11
 
 # set version label
 ARG BUILD_DATE
@@ -15,20 +15,18 @@ RUN \
  apk add --no-cache --virtual=build-dependencies \
 	g++ \
 	gcc \
-	make \
 	curl \
-	python3 \
-	python3-dev && \
+	make \
+	python-dev && \
  apk add --no-cache \
         jq && \
  echo "**** install pip packages ****" && \
- pip3 install --no-cache-dir -U \
+ pip install --no-cache-dir -U \
 	paho-mqtt \
 	pyyaml \
 	pycrypto && \
  echo "**** Install app ****" && \
  mkdir -p /app/ac2mqtt && \
- mkdir -p /app/ac2mqtt/log && \
  mkdir -p /config && \
  if [ -z ${AC2MQTT_RELEASE+x} ]; then \
 	AC2MQTT_RELEASE=$(curl -sX GET "https://api.github.com/repos/liaan/broadlink_ac_mqtt/releases/latest" \
