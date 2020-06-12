@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:3.12
+FROM lsiobase/alpine:3.10
 
 # set version label
 ARG BUILD_DATE
@@ -12,7 +12,7 @@ ENV PYTHONIOENCODING="UTF-8"
 
 RUN \
  echo "**** install packages ****" && \
- apk add --no-cache \
+ apk add --no-cache --virtual=build-dependencies \
 	g++ \
 	gcc \
 	make \
@@ -46,6 +46,8 @@ RUN \
  echo "None" > /app/ac2mqtt/version.txt && \
  echo ${AC2MQTT_RELEASE} > /app/ac2mqtt/version.txt && \
  echo "**** cleanup ****" && \
+ apk del --purge \
+	build-dependencies && \
  rm -rf \
 	/root/.cache \
 	/tmp/*
