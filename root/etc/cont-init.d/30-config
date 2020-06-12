@@ -1,14 +1,13 @@
 #!/usr/bin/with-contenv bash
 
 # copy config
+echo "**** Copy Config ****"
 [[ ! -e /config/config.yml ]] && \
 	cp /app/ac2mqtt/sample_config.ym_ /config/config.yml
 
 # update app
 currentVersion=$(cat /app/ac2mqtt/version.txt)
 LATEST_RELEASE=$(curl -sX GET "https://api.github.com/repos/liaan/broadlink_ac_mqtt/releases/latest"  | jq -r '. | .tag_name')
-
-
 
 if [ ${LATEST_RELEASE} != ${currentVersion} ]; then
    echo "**** Newer version found. Grabbing latest code ****"

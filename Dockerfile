@@ -1,4 +1,4 @@
-FROM lsiobase/python:3.11
+FROM lsiobase/alpine:3.12
 
 # set version label
 ARG BUILD_DATE
@@ -12,15 +12,17 @@ ENV PYTHONIOENCODING="UTF-8"
 
 RUN \
  echo "**** install packages ****" && \
- apk add --no-cache --virtual=build-dependencies \
+ apk add --no-cache \
 	g++ \
 	gcc \
 	make \
-	python-dev && \
+	curl \
+	python3 \
+	python3-dev && \
  apk add --no-cache \
         jq && \
  echo "**** install pip packages ****" && \
- pip install --no-cache-dir -U \
+ pip3 install --no-cache-dir -U \
 	paho-mqtt \
 	pyyaml \
 	pycrypto && \
@@ -44,8 +46,6 @@ RUN \
  echo "None" > /app/ac2mqtt/version.txt && \
  echo ${AC2MQTT_RELEASE} > /app/ac2mqtt/version.txt && \
  echo "**** cleanup ****" && \
- apk del --purge \
-	build-dependencies && \
  rm -rf \
 	/root/.cache \
 	/tmp/*
