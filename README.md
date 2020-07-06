@@ -11,7 +11,7 @@ Compatible with docker-compose v2+ schemas.
 
 ```
 ---
-version: "2.1"
+version: "2"
 services:
   ac2mqtt:
     image: broadlinkac/broadlink_ac_mqtt
