@@ -1,9 +1,10 @@
 #!/usr/bin/with-contenv bash
 
 # copy config
-echo "**** Copy Config ****"
+
 [[ ! -e /config/config.yml ]] && \
-	cp /app/ac2mqtt/settings/sample_config.yml /config/config.yml
+   echo "**** Copying Config ****"
+	cp /app/ac2mqtt/settings/config_sample.yml /config/config.yml
 
 # update app
 currentVersion=$(cat /app/ac2mqtt/version.txt)
