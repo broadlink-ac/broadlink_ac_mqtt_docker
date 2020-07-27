@@ -39,7 +39,7 @@ RUN \
  /tmp/ac2mqtt.tar.gz -C \
 	/app/ac2mqtt --strip-components=1 && \
  echo "**** Copying config file ****" && \
- cp /app/ac2mqtt/sample_config.ym_ /config/config.yml && \
+ cp /app/ac2mqtt/settings/sample_config.yml /config/config.yml && \
  echo "**** Hard Coding versioning ****" && \
  echo "None" > /app/ac2mqtt/version.txt && \
  echo ${AC2MQTT_RELEASE} > /app/ac2mqtt/version.txt && \
