@@ -1,10 +1,12 @@
 #!/usr/bin/with-contenv bash
 
 # copy config
-
-[[ ! -e /config/config.yml ]] && \
-   echo "**** Copying Config ****"
-	cp /app/ac2mqtt/settings/config_sample.yml /config/config.yml
+if [ ! -f /config/config.yml ]; then
+  echo "**** Config file not found, copying sample config ****"
+  cp /app/ac2mqtt/settings/config_sample.yml /config/config.yml
+else
+  echo "**** Config file exists already ****"
+fi
 
 # update app
 currentVersion=$(cat /app/ac2mqtt/version.txt)
