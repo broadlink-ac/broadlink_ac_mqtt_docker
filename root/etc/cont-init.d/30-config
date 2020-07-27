@@ -3,7 +3,7 @@
 # copy config
 echo "**** Copy Config ****"
 [[ ! -e /config/config.yml ]] && \
-	cp /app/ac2mqtt/settings/sample_config.ym_ /config/settings/config.yml
+	cp /app/ac2mqtt/settings/sample_config.yml /config/config.yml
 
 # update app
 currentVersion=$(cat /app/ac2mqtt/version.txt)
