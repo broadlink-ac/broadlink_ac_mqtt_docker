@@ -70,3 +70,8 @@ auto_discovery_topic: homeassistant
 ```
 
 The `auto_discovery_toipc` must match the `discovery_prefix` in your Home-Assistant configuration.yaml.
+
+
+
+
+latest version: 1.0.15
