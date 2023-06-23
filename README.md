@@ -69,7 +69,7 @@ Edit your ac2mqtt config.yml file and ensure the following is under the `mqtt` s
 auto_discovery_topic: homeassistant
 ```
 
-The `auto_discovery_toipc` must match the `discovery_prefix` in your Home-Assistant configuration.yaml.
+The `auto_discovery_topic` must match the `discovery_prefix` in your Home-Assistant configuration.yaml.
 
 
 
